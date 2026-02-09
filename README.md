@@ -13,7 +13,7 @@ npm install danfe
 ## Usage
 
 ```ts
-import { parseDanfeFromString } from 'danfe';
+import { Danfe } from 'danfe';
 
 const xml = `<?xml version="1.0"?>
 <nfeProc>
@@ -23,7 +23,7 @@ const xml = `<?xml version="1.0"?>
   <protNFe>...</protNFe>
 </nfeProc>`;
 
-const danfe = parseDanfeFromString(xml);
+const danfe = Danfe.parseDanfeFromString(xml);
 if (danfe) {
   console.log(danfe.tipo);       // 'NFCe' | 'NFe'
   console.log(danfe.dados.emit?.xNome);
@@ -32,10 +32,12 @@ if (danfe) {
 }
 ```
 
+You can also use the function directly: `import { parseDanfeFromString } from 'danfe'`.
+
 ### API
 
-- **`parseDanfeFromString(xml: string): Danfe | null`**  
-  Parses XML and detects type (nfeProc/NFe = NFC-e or NFe). Returns normalized `Danfe` or `null` if invalid or unrecognized.
+- **`Danfe.parseDanfeFromString(xml: string): DanfeData | null`**  
+  Parses XML and detects type (nfeProc/NFe = NFC-e or NFe). Returns normalized `DanfeData` or `null` if invalid or unrecognized. Import the type as `import type { DanfeData } from 'danfe'` if needed.
 
 ### Supported XML roots
 

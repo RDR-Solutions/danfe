@@ -3,5 +3,12 @@
  * @see https://github.com/brasizza/danfe-package
  */
 
-export { parseDanfeFromString } from './parser/index';
-export type { Danfe, DadosDanfe, TipoDocumento } from './models/index';
+import { parseDanfeFromString as parseDanfeFromStringFn } from './parser/index';
+
+export { parseDanfeFromStringFn as parseDanfeFromString };
+export type { Danfe as DanfeData, DadosDanfe, TipoDocumento } from './models/index';
+
+/** Use Danfe.parseDanfeFromString(xml). Return type is DanfeData. */
+export const Danfe = {
+  parseDanfeFromString: parseDanfeFromStringFn,
+};
