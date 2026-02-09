@@ -1,4 +1,4 @@
-# danfe-to-json
+# danfe
 
 Parse DANFE XML (NFC-e, NFe) into a normalized **Danfe** object.
 
@@ -7,13 +7,13 @@ Logic is based on [brasizza/danfe-package](https://github.com/brasizza/danfe-pac
 ## Install
 
 ```bash
-npm install danfe-to-json
+npm install danfe
 ```
 
 ## Usage
 
 ```ts
-import { parseDanfeFromString } from 'danfe-to-json';
+import { parseDanfeFromString } from 'danfe';
 
 const xml = `<?xml version="1.0"?>
 <nfeProc>
