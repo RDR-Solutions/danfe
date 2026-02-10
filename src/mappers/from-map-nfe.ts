@@ -82,12 +82,13 @@ export function fromMapNFe(root: Raw): Danfe | null {
     cobr: cobr.fat || (cobr.dup && cobr.dup.length > 0) ? cobr : undefined,
   };
 
-  const supl = first(infNFe['infNFeSupl'] ?? infNFe['infnfesupl']) as Raw | undefined;
+  // infNFeSupl é irmão de infNFe dentro de NFe (nfeBlock), não filho de infNFe
+  const supl = first(nfeBlock['infNFeSupl'] ?? nfeBlock['infnfesupl']) as Raw | undefined;
   let qrcodePrinter = '';
   let urlConsulta: string | undefined;
   if (supl && typeof supl === 'object') {
-    qrcodePrinter = text(supl['qrCod'] ?? supl['qrCode'] ?? supl['qrcode']) || text(supl['urlConsulta']);
-    urlConsulta = text(supl['urlConsulta']).trim() || undefined;
+    qrcodePrinter = text(supl['qrCode'] ?? supl['qrCod'] ?? supl['qrcode']) || text(supl['urlChave']);
+    urlConsulta = text(supl['urlChave']).trim() || undefined;
   }
 
   return {
