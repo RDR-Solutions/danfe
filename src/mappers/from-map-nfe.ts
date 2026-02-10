@@ -157,6 +157,7 @@ function buildDetNFe(inf: Raw): Det[] {
     if (!prodRaw || typeof prodRaw !== 'object') continue;
 
     const prod: Prod = {
+      cProd: text(prodRaw['cProd']).trim() || undefined,
       xProd: text(prodRaw['xProd']).trim() || undefined,
       qCom: num(prodRaw['qCom']),
       vUnCom: num(prodRaw['vUnCom']),
