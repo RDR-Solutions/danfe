@@ -1,5 +1,5 @@
 {
-  "name": "danfe",
+  "name": "danfe-parser",
   "version": "1.0.4",
   "description": "Parse DANFE XML (NFC-e, NFe) into a normalized Danfe object",
   "main": "./dist/index.cjs",
