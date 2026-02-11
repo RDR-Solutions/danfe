@@ -204,12 +204,20 @@ function getDescriptionOfPayment(cMP: string): string {
       return 'Cartão de Crédito';
     case '04':
       return 'Cartão de Débito';
+    case '05':
+      return 'Crediário';
     case '15':
       return 'Boleto Bancário';
+    case '16':
+      return 'Depósito Bancário';
     case '17':
       return 'PIX';
+    case '19':
+      return 'Programa de Fidelidade';
     case '20':
       return 'PIX';
+    case '21':
+      return 'Crédito Loja';
     default:
     return 'Outro';
   }
