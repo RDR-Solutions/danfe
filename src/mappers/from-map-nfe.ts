@@ -193,18 +193,42 @@ function buildTotalNFe(inf: Raw): Total {
   };
 }
 
+//descricao do pagamento
+function getDescriptionOfPayment(cMP: string): string {
+  switch (cMP) {
+    case '01':
+      return 'Dinheiro';
+    case '02':
+      return 'Cheque';
+    case '03':
+      return 'Cartão de Crédito';
+    case '04':
+      return 'Cartão de Débito';
+    case '15':
+      return 'Boleto Bancário';
+    case '17':
+      return 'PIX';
+    case '20':
+      return 'PIX';
+    default:
+    return 'Outro';
+  }
+}
+
 function buildPgtoNFe(inf: Raw): Pgto | undefined {
-  const pgtoRaw = first(inf['pgto']) as Raw | undefined;
+  // NFe 4.0 usa <pag>; outros layouts podem usar <pgto>
+  const pgtoRaw = first(inf['pag'] ?? inf['pgto']) as Raw | undefined;
   if (!pgtoRaw || typeof pgtoRaw !== 'object') return undefined;
 
-  const detPagList = asArray(pgtoRaw['det'] ?? pgtoRaw['detPag']);
+  const detPagList = asArray(pgtoRaw['detPag'] ?? pgtoRaw['det']);
   const formas: MP[] = [];
 
   for (const d of detPagList) {
     const mo = typeof d === 'object' && d !== null ? (d as Raw) : {};
     const cMP = text(mo['indPag'] ?? mo['tPag'] ?? mo['cMP']).trim();
+    const cMPDesc = getDescriptionOfPayment(cMP);
     const vMP = num(mo['vPag'] ?? mo['vMP']);
-    if (cMP || vMP) formas.push({ cMP: cMP || undefined, vMP });
+    if (cMP || vMP) formas.push({ cMP: cMP || undefined, cMPDesc: cMPDesc, vMP });
   }
 
   const vTroco = num(pgtoRaw['vTroco']);
