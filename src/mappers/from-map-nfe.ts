@@ -111,6 +111,7 @@ function buildEmitNFe(inf: Raw): Emit {
         nro: text(ender['nro']).trim() || undefined,
         xBairro: text(ender['xBairro']).trim() || undefined,
         cMun: text(ender['cMun']).trim() || undefined,
+        xMun: text(ender['xMun']).trim() || undefined,
         uF: text(ender['UF'] ?? ender['uF']).trim() || undefined,
         cEP: text(ender['CEP'] ?? ender['cEP']).trim() || undefined,
       }

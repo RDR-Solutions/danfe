@@ -3,6 +3,7 @@ export interface EnderEmit {
   nro?: string;
   xBairro?: string;
   cMun?: string;
+  xMun?: string;
   uF?: string;
   cEP?: string;
   xCpl?: string;
