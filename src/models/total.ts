@@ -3,6 +3,7 @@ export interface Total {
   vICMS?: string;
   vProd?: string;
   vDesc?: string;
+  vFrete?: string;
   vPIS?: string;
   vCOFINS?: string;
   vPISST?: string;
@@ -10,16 +11,5 @@ export interface Total {
   vOutro?: string;
   vNF?: string;
   vTotTrib?: string;
-  /** Mapped from various total fields - valor total dos produtos */
-  valorTotal?: string;
-  /** Desconto */
-  desconto?: string;
-  /** Frete */
-  valorFrete?: string;
-  /** Acréscimo */
-  acrescimo?: string;
-  /** Valor total pago */
-  valorPago?: string;
-  /** Tributos totais (valotTotalTributos in Dart) */
   valotTotalTributos?: string;
 }

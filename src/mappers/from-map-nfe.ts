@@ -173,7 +173,7 @@ function buildDetNFe(inf: Raw): Det[] {
 function buildTotalNFe(inf: Raw): Total {
   const totalRaw = first(inf['total']) as Raw | undefined;
   if (!totalRaw || typeof totalRaw !== 'object')
-    return { valorTotal: '0', valorPago: '0', valorFrete: '0.00', desconto: '0.00', acrescimo: '0.00' };
+    return { vNF: '0', vProd: '0', vDesc: '0', vFrete: '0', vOutro: '0', vTotTrib: '0' };
 
   const icms = first(totalRaw['ICMSTot'] ?? totalRaw['ICMSTot']) as Raw | undefined;
   const vNF = icms ? num(icms['vNF']) : num(totalRaw['vNF']);
@@ -182,16 +182,27 @@ function buildTotalNFe(inf: Raw): Total {
   const vFrete = icms ? num(icms['vFrete']) : num(totalRaw['vFrete']);
   const vOutro = icms ? num(icms['vOutro']) : num(totalRaw['vOutro']);
   const vTotTrib = icms ? text(icms['vTotTrib']) : text(totalRaw['vTotTrib']);
+  const vICMS = icms ? num(icms['vICMS']) : num(totalRaw['vICMS']);
+  const vPIS = icms ? num(icms['vPIS']) : num(totalRaw['vPIS']);
+  const vCOFINS = icms ? num(icms['vCOFINS']) : num(totalRaw['vCOFINS']);
+  const vPISST = icms ? num(icms['vPISST']) : num(totalRaw['vPISST']);
+  const vCOFINSST = icms ? num(icms['vCOFINSST']) : num(totalRaw['vCOFINSST']);
 
   return {
     vNF,
-    valorTotal: vProd,
-    valorPago: vNF,
-    desconto: vDesc,
-    valorFrete: vFrete,
-    acrescimo: vOutro,
+    vProd,
+    vICMS,
+    vPIS,
+    vCOFINS,
+    vPISST,
+    vCOFINSST,
+    vDesc,
+    vFrete,
+    vOutro,
+    vTotTrib,
     valotTotalTributos: vTotTrib.trim() || undefined,
   };
+
 }
 
 //descricao do pagamento
