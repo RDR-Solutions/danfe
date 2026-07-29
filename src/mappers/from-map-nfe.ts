@@ -164,6 +164,7 @@ function buildDetNFe(inf: Raw): Det[] {
       qCom: num(prodRaw['qCom']),
       vUnCom: num(prodRaw['vUnCom']),
       vProd: num(prodRaw['vProd']),
+      vDesc: num(prodRaw['vDesc']),
     };
     out.push({ prod });
   }

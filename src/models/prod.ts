@@ -4,4 +4,5 @@ export interface Prod {
   qCom?: string;
   vUnCom?: string;
   vProd?: string;
+  vDesc?: string;
 }
